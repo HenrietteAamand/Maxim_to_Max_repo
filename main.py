@@ -9,8 +9,12 @@ import datetime as dt
 
 # Opretter de klasser der skal bruges til at gemme data
 ppgX_JSON = Ppg4_Class()
-create_json_Obj = CreateJSONobj_class(ppgX_JSON, '', 'Here_Goes_A_New_Filename.csv')
+filename_maxdata = 'The_manipulated_data_hr.csv'
+filename_full_observations = 'The_original_data.csv'
+full_path_full_observations = ''
 
+
+create_json_Obj = CreateJSONobj_class(ppgX_JSON, full_path_full_observations, filename_maxdata, filename_full_observations)
 
 port = serial.Serial('COM5', baudrate=115200, timeout=3.0)
 #port = serial.Serial("/dev/tty.usbmodem01234567891", baudrate=115200, timeout=3.0)
@@ -46,7 +50,7 @@ while 1>=0:
         create_json_Obj.CreateAndSave(my_string, timestamp)
         i+= 1
         
-    if my_bytes == b'' or my_bytes =='' or i == 100: #vi måler lige nu i 4500 samples svarende til 2 minutter og 10 sekunder
+    if my_bytes == b'' or my_bytes =='' or i == 1000: #vi måler lige nu i 4500 samples svarende til 2 minutter og 10 sekunder
         print("we are breaking out")
         break
 

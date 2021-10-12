@@ -24,7 +24,7 @@ class Ppg4_Class(IPpg_Class,JSONEncoder):
         self.rrsecure = ListOfValues[12]
         self.spo2 = ListOfValues[13]
     
-    def toJSON(self): #Denne metode bruges til at serialisere ppg objektet. Den returnere et json objekt. 
+    def toJSON(self): #Denne metode bruges til at serialisere ppg objektet. Den returnere et json objekt som string. 
         return json.dumps(self, default=lambda o: o.__dict__, 
             sort_keys=False, indent=4)
 

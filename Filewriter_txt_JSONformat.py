@@ -13,7 +13,7 @@ class WriteJSON_class:
 
         #Åbner filen, tømmer den og skriver ny header
         data_file = open(self.full_path, 'w+', newline='') #w+ fordi så laves filen hvis ikke den allerede eksisterer
-        csv_writer = csv.writer(data_file, delimiter=';')
+        csv_writer = csv.writer(data_file, delimiter=',')
         header = self.JSON_obj.keys()
         csv_writer.writerow(header)
         data_file.close()
@@ -22,7 +22,7 @@ class WriteJSON_class:
         #print("Printing JSON til file with path: " + str(self.full_path))
         #print("")
         data_file = open(self.full_path, 'a', newline='')
-        csv_writer = csv.writer(data_file, delimiter=';')
+        csv_writer = csv.writer(data_file, delimiter=',')
         
         # Writing data of CSV file
         csv_writer.writerow(JSON_obj.values())
