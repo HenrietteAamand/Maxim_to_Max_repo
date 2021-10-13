@@ -6,11 +6,16 @@ from ppg4 import *
 from Filewriter_txt_JSONformat import *
 from CreateJSONobj import *
 import datetime as dt
+#Opsætning:
+Testperson_nummer = "1"
+Fasenummer = "1"
+Navn_på_fase = "stilhed"
+
 
 # Opretter de klasser der skal bruges til at gemme data
 ppgX_JSON = Ppg4_Class()
-filename_maxdata = 'The_manipulated_data_hr.csv'
-filename_full_observations = 'The_original_data.csv'
+filename_full_observations = 'Testperson_' + Testperson_nummer + "_Fase_" + Fasenummer + "_" + Navn_på_fase + "_observationer" #Testperson_1_Fase_1_stilhed_observationer
+filename_maxdata = 'Testperson_' + Testperson_nummer + "_Fase_" + Fasenummer + "_" + Navn_på_fase + "_maxdata" #Testperson_1_Fase_1_stilhed_maxdata 
 full_path_full_observations = ''
 
 
@@ -50,7 +55,7 @@ while 1>=0:
         create_json_Obj.CreateAndSave(my_string, timestamp)
         i+= 1
         
-    if my_bytes == b'' or my_bytes =='' or i == 1000: #vi måler lige nu i 4500 samples svarende til 2 minutter og 10 sekunder
+    if my_bytes == b'' or my_bytes =='' or i == 100: #vi måler lige nu i 4500 samples svarende til 2 minutter og 10 sekunder
         print("we are breaking out")
         break
 
