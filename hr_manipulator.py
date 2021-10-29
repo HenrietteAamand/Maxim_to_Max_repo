@@ -62,14 +62,14 @@ class hr_manipulator_class:
                 self.oldhr = self.hr_list[n]
                 self.UseFilewriter(self.oldhr,self.timestamp_list[n], 0)
                 noSpike = True
-                print("match found at n = " + str(n) + " with hr " + str(self.oldhr))
+                #print("match found at n = " + str(n) + " with hr " + str(self.oldhr))
             
             # hvis der kun detekteres spikes i denne hr liste så accepteres at der er sket en ændring og der returneres et gennemsnit af de 10 hr værder
             if(n == len(self.hr_list)-6):  
                 self.oldhr = float("{:.1f}".format(sum(self.hr_list)/len(self.hr_list)))
                 self.UseFilewriter(self.oldhr,self.timestamp_list[n], 1)
                 noSpike = True #dette er ikke helt sandt, men det er den måde vi kommer ud af whileloopet
-                print("NO match found, hr is " + str(self.oldhr))
+                #print("NO match found, hr is " + str(self.oldhr))
             n -= 1
         self.hr_list.clear()
         self.timestamp_list.clear()

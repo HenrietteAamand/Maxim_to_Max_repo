@@ -15,6 +15,9 @@ class CreateJSONobj_class:
         self.rr_counter = 0
         self.limit = 25
         self.limitchanger = -1
+        self.first_observations = 1500
+        self.counter = 0
+        self.oneMinute = 1
         
 
     def CreateAndSave(self, inputFromWatch, timestamp):
@@ -33,8 +36,17 @@ class CreateJSONobj_class:
         self.ppg_JSON.UpdateJSON(ListOfValues, timestamp)
         self.json_obj = json.loads(self.ppg_JSON.toJSON())
         self.Filewriter_txt_jsonClass.SaveLineToFile(self.json_obj)
-       #  self.calculate_hr_from_rr_maxim()
-        self.save_hr_maxim()
+        if(self.counter >= self.first_observations):
+            self.save_hr_maxim()
+            if self.counter % 25 == 0:
+                self.oneMinute += 1
+                print(str(self.json_obj['hr']))
+
+        else:
+            if self.counter % 25 == 0:
+                print(self.oneMinute)
+                self.oneMinute += 1
+        self.counter += 1
     
     def calculate_hr_from_rr_maxim(self):
         if(float(self.json_obj['rr']) != 0.0):

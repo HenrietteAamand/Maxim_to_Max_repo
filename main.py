@@ -7,8 +7,8 @@ from Filewriter_txt_JSONformat import *
 from CreateJSONobj import *
 import datetime as dt
 #Opsætning:
-Testperson_nummer = "1"
-Fasenummer = "1"
+Testperson_nummer = "Henriette"
+Fasenummer = "stresstest_3"
 Navn_på_fase = "stilhed"
 
 
@@ -21,7 +21,7 @@ full_path_full_observations = ''
 
 create_json_Obj = CreateJSONobj_class(ppgX_JSON, full_path_full_observations, filename_maxdata, filename_full_observations)
 
-port = serial.Serial('COM5', baudrate=115200, timeout=3.0)
+port = serial.Serial('COM17', baudrate=115200, timeout=3.0)
 #port = serial.Serial("/dev/tty.usbmodem01234567891", baudrate=115200, timeout=3.0)
 my_string = ""
 port.flushInput()
@@ -55,7 +55,7 @@ while 1>=0:
         create_json_Obj.CreateAndSave(my_string, timestamp)
         i+= 1
         
-    if my_bytes == b'' or my_bytes =='' or i == 100: #vi måler lige nu i 4500 samples svarende til 2 minutter og 10 sekunder
+    if my_bytes == b'' or my_bytes =='' or i == 22500: #vi måler lige nu i 4500 samples svarende til 2 minutter og 10 sekunder
         print("we are breaking out")
         break
 
