@@ -21,13 +21,17 @@ print('Getting data for fase {0} where intervention is {1}', Fasenummer, Navn_p�
 ppgX_JSON = Ppg4_Class()
 filename_full_observations = 'Testperson_' + Testperson_nummer + "_Fase_" + Fasenummer + "_" + Navn_på_fase + "_observationer" #Testperson_1_Fase_1_stilhed_observationer
 filename_maxdata = 'Testperson_' + Testperson_nummer + "_Fase_" + Fasenummer + "_" + Navn_på_fase + "_maxdata" #Testperson_1_Fase_1_stilhed_maxdata 
-full_path_full_observations = ''
+full_path_full_observations = '/Users/sisselraahede/Documents/Au_Digital_design/Kandidat/Praktik/Isobel/Lydindhold/Max/Soundscape komposition/GenerativeCompositionAbleton/Observationer/RaaObservationer'
+full_path_maxdata = '/Users/sisselraahede/Documents/Au_Digital_design/Kandidat/Praktik/Isobel/Lydindhold/Max/Soundscape komposition/GenerativeCompositionAbleton'
+
+create_json_Obj = CreateJSONobj_class(ppgX_JSON, full_path_maxdata, filename_maxdata, full_path_full_observations, filename_full_observations)
+
 
 
 create_json_Obj = CreateJSONobj_class(ppgX_JSON, full_path_full_observations, filename_maxdata, filename_full_observations)
 
-port = serial.Serial('COM17', baudrate=115200, timeout=3.0)
-#port = serial.Serial("/dev/tty.usbmodem01234567891", baudrate=115200, timeout=3.0)
+#port = serial.Serial('COM5', baudrate=115200, timeout=3.0)
+port = serial.Serial("/dev/tty.usbmodem01234567891", baudrate=115200, timeout=3.0)
 my_string = ""
 port.flushInput()
 port.flushOutput()
@@ -38,7 +42,7 @@ print("getting ppg data")
 port.write("read ppg 4\n".encode())
 i = 0
 print("Start")
-while 1>=0:
+while True:
     my_bytes = port.readline()
     timestamp = dt.datetime.now().time()
     my_string = my_bytes.decode('ascii')
