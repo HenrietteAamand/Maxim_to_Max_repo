@@ -8,18 +8,17 @@ class CreateJSONobj_class:
         self.ppg_JSON = ppgX_class
         self.Filewriter_txt_jsonClass = WriteJSON_class(full_path,filename_observations,self.ppg_JSON.getEmptyObjOn_ppg5_format())
         self.hr_manipulator = hr_manipulator_class('', filename_max)
-        print("Succesfully created 'CreateJSONobj_class'")
+        #print("Succesfully created 'CreateJSONobj_class'")
         self.valuesToSave = self.ppg_JSON.getValuesToSave() #De værdier der skal gemmes fra strenglisten, der kommer ud fra USB-uret
-        print(self.valuesToSave)
+        #print(self.valuesToSave)
         self.hr_counter = 0
         self.rr_counter = 0
-        self.limit = 25
+        self.limit = 13 #Sættes til 25 ved 1 hz og 12 ved 2 Hz
         self.limitchanger = -1
         self.first_observations = 1500
         self.counter = 0
         self.oneMinute = 1
         
-
     def CreateAndSave(self, inputFromWatch, timestamp):
         n = 0
         i = 0
